@@ -1,11 +1,11 @@
 import React from 'react';
 import {SafeAreaView} from 'react-native';
 import {
-  StyledText,
-  StyledHeader,
-  StyledView,
-  StyledImage,
-  StyledFoot,
+  HeaderTitle,
+  Header,
+  MiddView,
+  ProfileImage,
+  Footer,
   ButtonText,
 } from './style';
 import profileImage from '../../assets/Profile.png';
@@ -44,21 +44,19 @@ const data = [
   }
 ]
 
-const HomeScreen = () => {
-  return (
-    <SafeAreaView>
-      <StyledHeader>
-        <StyledText>CryptoTracker Pro</StyledText>
-        <StyledImage source={profileImage} alt="Profile Image Not Found" />
-      </StyledHeader>
-      <StyledView>
-        <CurrencyList data={data} />
-      </StyledView>
-      <StyledFoot>
-        <ButtonText>+ Add a Cryptocurrency</ButtonText>
-      </StyledFoot>
-    </SafeAreaView>
-  );
-};
+const HomeScreen = () =>
+  <SafeAreaView>
+    <Header>
+      <HeaderTitle>CryptoTracker Pro</HeaderTitle>
+      <ProfileImage source={profileImage} alt="Profile Image Not Found" />
+    </Header>
+    <MiddView>
+      <CurrencyList data={data} />
+    </MiddView>
+    <Footer>
+      <ButtonText>+ Add a Cryptocurrency</ButtonText>
+    </Footer>
+  </SafeAreaView>
+;
 
 export default HomeScreen;

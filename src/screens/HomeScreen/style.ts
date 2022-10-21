@@ -1,44 +1,46 @@
 import styled from 'styled-components';
+import theme from "../../utils/theme"
 
-export const StyledHeader = styled.View`
+export const Header = styled.View`
   width: 100%;
   height: 120px;
-  background-color: #385775;
+  background-color: ${theme.colors.blue};
   display: flex;
   flex-direction: row;
 `;
 
-export const StyledView = styled.View`
+export const MiddView = styled.View`
   width: 100%;
   min-height: 200px;
-  background-color: #ffffff;
+  background-color: ${theme.colors.white};
 `;
 
-export const StyledFoot = styled.View`
+export const Footer = styled.View`
   width: 100%;
   height: 100%;
-  background-color: #ffffff;
+  background-color: ${theme.colors.white};
+  padding-top: 30px;
 `;
 
-export const StyledText = styled.Text`
+export const HeaderTitle = styled.Text`
   font-weight: bold;
-  color: white;
+  color: ${theme.colors.white};
   padding-top: 10%; 
   padding-left: 5%;
   font-size: 22px;
 `;
 
-export const StyledImage = styled.Image`
+export const ProfileImage = styled.Image`
   height: 50px;
   width: 50px;
   border-radius: 100px;
   margin-top: 30px; 
   margin-left: 120px;
-  background-color: white
+  background-color: ${theme.colors.white};
 `;
 
 export const ButtonText = styled.Text`
-  color: #385775;
+  color: ${theme.colors.blue};
   display: flex;
   text-align: center;
   font-size: 17.5px;

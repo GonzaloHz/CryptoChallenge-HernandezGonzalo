@@ -1,4 +1,4 @@
-export default interface DataTypes {
+export default interface CryptoTypes {
   name: string;
   slug?: string;
   symbol: string;

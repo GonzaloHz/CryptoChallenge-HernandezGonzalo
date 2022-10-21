@@ -1,54 +1,36 @@
 import React from 'react';
 import {
   ItemContainer,
-  ItemLeftContainer,
-  ItemRigthContainer,
-  ItemSubSubContainer,
+  NameContainer,
+  PercentageContainer,
+  ItemSubContainer,
   ItemTitle,
-  StyledArrow,
+  ArrowPercentage,
   StyledImage,
   TextPercentage,
 } from './style';
 import ArrowUp from '../../assets/ArrowGreen.png';
 import ArrowDown from '../../assets/ArrowRed.png';
 import {Text} from 'react-native';
-import DataTypes from '../../types/types';
+import CryptoTypes from '../../types/types';
 
-const CryptoItem = ({
-  symbol,
-  name,
-  value,
-  percentage,
-  signal,
-  slug,
-  image,
-}: {
-  symbol: DataTypes['symbol'];
-  name: DataTypes['name'];
-  value: DataTypes['value'],
-  percentage: DataTypes['percentage'],
-  signal: DataTypes['signal'],
-  slug: DataTypes['slug'],
-  image: DataTypes['image'],
-}) => (
+const CryptoItem = ({item}: {item: CryptoTypes}) => (
   <ItemContainer>
-    <StyledImage source={image} alt="image not found" />
-    <ItemLeftContainer>
-      <ItemTitle>{name}</ItemTitle>
-      <Text>{symbol}</Text>
-    </ItemLeftContainer>
-    <ItemRigthContainer>
-      <ItemTitle>${value}</ItemTitle>
-      <ItemSubSubContainer>
-        <StyledArrow
-          source={signal ? ArrowUp : ArrowDown}
+    <StyledImage source={item.image} alt="image not found" />
+    <NameContainer>
+      <ItemTitle>{item.name}</ItemTitle>
+      <Text>{item.symbol}</Text>
+    </NameContainer>
+    <PercentageContainer>
+      <ItemTitle>${item.value}</ItemTitle>
+      <ItemSubContainer>
+        <ArrowPercentage
+          source={item.signal ? ArrowUp : ArrowDown}
           alt="image not found"
         />
-        <TextPercentage color={signal ? 'green' : 'red'}>
-          {percentage}
-        </TextPercentage>
-      </ItemSubSubContainer>
-    </ItemRigthContainer>
+        <TextPercentage signal={item.signal}>{item.percentage}</TextPercentage>
+      </ItemSubContainer>
+    </PercentageContainer>
   </ItemContainer>
 );
 
