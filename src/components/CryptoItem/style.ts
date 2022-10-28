@@ -2,8 +2,8 @@ import styled from "styled-components"
 import theme from "../../utils/theme"
 
 export const StyledImage = styled.Image`
-  max-height: 60px;
-  max-width: 60px;
+  height: 50px;
+  width: 50px;
   margin-right: 20px;
 `;
 
@@ -44,6 +44,7 @@ export const ItemTitle = styled.Text`
   color: ${theme.colors.black};
   font-size: 17px;
   padding-top: 5px;
+  text-align: right;
 `;
 
 export const TextPercentage = styled.Text`

@@ -1,9 +1,13 @@
 export default interface CryptoTypes {
+  id: string;
   name: string;
-  slug?: string;
-  symbol: string;
-  value: string;
-  percentage: string;
-  signal: boolean;
-  image: string;
+  symbol: string; 
+  metrics: Metrics;
+}
+interface Metrics {
+  market_data: Market_Data;
+}
+interface Market_Data {
+  price_usd: number;
+  percent_change_usd_last_24_hours: number;
 }

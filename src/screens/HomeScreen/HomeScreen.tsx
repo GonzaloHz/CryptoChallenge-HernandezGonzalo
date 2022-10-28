@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {SafeAreaView} from 'react-native';
 import {
   HeaderTitle,
@@ -9,54 +9,40 @@ import {
   ButtonText,
 } from './style';
 import profileImage from '../../assets/Profile.png';
-import bitcoinLogo from "../../assets/bitcoinLogo.png"
-import ethereumLogo from "../../assets/ethereumLogo2.jpg"
-import xprLogo from "../../assets/xprLogo.png"
 import CurrencyList from '../../containers/CurrencyList/CurrencyList';
+import CryptoTypes from '../../types/types';
+import {API_URL} from '@env';
 
-const data = [
-  {
-    name: 'Bitcoin',
-    slug: 'bitcoin',
-    symbol: 'BTC',
-    value: '7,215.68',
-    percentage: '1,82',
-    signal: true,
-    image: bitcoinLogo,
-  },
-  {
-    name: 'Ethereum',
-    slug: 'ethereum',
-    symbol: 'ETH',
-    value: '146.83',
-    percentage: '1,46',
-    signal: true,
-    image: ethereumLogo,
-  },
-  {
-    name: 'XRP',
-    slug: 'XRP',
-    symbol: 'XRP',
-    value: '0.220568',
-    percentage: '2,47',
-    signal: false,
-    image: xprLogo,
+const HomeScreen = () =>{
+  const [coins, setCoins] = useState<CryptoTypes[]>([]) 
+  const getAllCryptos = async () => {
+    try {
+      const dataAPI = await fetch(API_URL);
+      const data = await dataAPI.json()
+      setCoins(data.data)
+    } catch (error) {
+      console.log(error)
+    }
   }
-]
 
-const HomeScreen = () =>
-  <SafeAreaView>
-    <Header>
-      <HeaderTitle>CryptoTracker Pro</HeaderTitle>
-      <ProfileImage source={profileImage} alt="Profile Image Not Found" />
-    </Header>
-    <MiddView>
-      <CurrencyList data={data} />
-    </MiddView>
-    <Footer>
-      <ButtonText>+ Add a Cryptocurrency</ButtonText>
-    </Footer>
-  </SafeAreaView>
-;
+  useEffect(() => {
+    getAllCryptos()
+  }, []);
+
+  return (
+    <SafeAreaView>
+      <Header>
+        <HeaderTitle>CryptoTracker Pro</HeaderTitle>
+        <ProfileImage source={profileImage} alt="Profile Image Not Found" />
+      </Header>
+      <MiddView>
+        <CurrencyList data={coins} />
+      </MiddView>
+      <Footer>
+        <ButtonText>+ Add a Cryptocurrency</ButtonText>
+      </Footer>
+    </SafeAreaView>
+  );
+};
 
 export default HomeScreen;

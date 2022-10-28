@@ -16,19 +16,31 @@ import CryptoTypes from '../../types/types';
 
 const CryptoItem = ({item}: {item: CryptoTypes}) => (
   <ItemContainer>
-    <StyledImage source={item.image} alt="image not found" />
+    <StyledImage
+      source={{uri: `https://messari.io/asset-images/${item.id}/32.png`}}
+      alt="img not found"
+    />
     <NameContainer>
       <ItemTitle>{item.name}</ItemTitle>
       <Text>{item.symbol}</Text>
     </NameContainer>
     <PercentageContainer>
-      <ItemTitle>${item.value}</ItemTitle>
+      <ItemTitle>${item.metrics.market_data.price_usd.toFixed(2)}</ItemTitle>
       <ItemSubContainer>
         <ArrowPercentage
-          source={item.signal ? ArrowUp : ArrowDown}
+          source={
+            item.metrics.market_data.percent_change_usd_last_24_hours >= 0
+              ? ArrowUp
+              : ArrowDown
+          }
           alt="image not found"
         />
-        <TextPercentage signal={item.signal}>{item.percentage}</TextPercentage>
+        <TextPercentage
+          signal={
+            item.metrics.market_data.percent_change_usd_last_24_hours >= 0
+          }>
+          {item.metrics.market_data.percent_change_usd_last_24_hours.toFixed(2)}
+        </TextPercentage>
       </ItemSubContainer>
     </PercentageContainer>
   </ItemContainer>
