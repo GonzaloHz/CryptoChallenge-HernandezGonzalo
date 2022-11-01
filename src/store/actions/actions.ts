@@ -46,13 +46,13 @@ export const updateCrypto = (cryptos: CryptoTypes[]) => {
   return async dispatch => {
     try {
       const cryptosUpdated: CryptoTypes[] = [];
-      const PRUEBAAA: string[] = cryptos.map(c => {
+      const cryptolisted: string[] = cryptos.map(c => {
         return c.Asset.symbol;
       });
 
       for (let i = 0; i < cryptos.length; i++) {
         const dataAPI = await fetch(
-          `${API_URL}assets/${PRUEBAAA[i]}/metrics/market-data`,
+          `${API_URL}assets/${cryptolisted[i]}/metrics/market-data`,
         );
         const data = await dataAPI.json();
         cryptosUpdated.push(data.data);
