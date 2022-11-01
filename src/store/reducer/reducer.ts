@@ -1,4 +1,4 @@
-import {DELETE_CRYPTO, GET_CRYPTO} from '../actions/actiontypes';
+import {DELETE_CRYPTO, GET_CRYPTO, UPDATE_CRYPTO} from '../actions/actiontypes';
 
 const initialState = {
   cryptos: [],
@@ -16,6 +16,11 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         cryptos: action.payload,
       };
+    case UPDATE_CRYPTO:
+      return {
+        ...state,
+        cryptos: action.payload
+      }
     default:
       return {
         ...state,
