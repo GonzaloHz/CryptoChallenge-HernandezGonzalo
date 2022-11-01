@@ -11,8 +11,9 @@ export const Header = styled.View`
 
 export const MiddView = styled.View`
   width: 100%;
-  min-height: 200px;
+  min-height: 0px;
   background-color: ${theme.colors.white};
+  padding-bottom: 10px;
 `;
 
 export const Footer = styled.View`

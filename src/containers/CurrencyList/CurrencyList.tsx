@@ -10,7 +10,7 @@ const CurrencyList = ({data}) => {
       <FlatList
         data={data}
         renderItem={renderItem}
-        keyExtractor={item => item.name}
+        keyExtractor={item => item.Asset.name}
       />
     </SafeAreaView>
   );

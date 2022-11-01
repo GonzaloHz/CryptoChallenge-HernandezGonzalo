@@ -1,0 +1,2 @@
+export const GET_CRYPTO = 'GET_CRYPTO'
+export const DELETE_CRYPTO = 'DELETE_CRYPTO'

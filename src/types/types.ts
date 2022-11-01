@@ -1,11 +1,11 @@
 export default interface CryptoTypes {
+  Asset: Asset;
+  market_data: Market_Data;
+}
+interface Asset {
   id: string;
   name: string;
   symbol: string; 
-  metrics: Metrics;
-}
-interface Metrics {
-  market_data: Market_Data;
 }
 interface Market_Data {
   price_usd: number;

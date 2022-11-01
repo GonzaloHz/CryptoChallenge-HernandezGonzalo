@@ -12,13 +12,13 @@ export const ArrowPercentage = styled.Image`
   max-width: 20px;
 `;
 
-export const ItemContainer = styled.View`
+export const ItemContainer = styled.TouchableOpacity`
   display: flex;
   flex-direction: row;
   padding: 10px 0px;
   border-color: ${theme.colors.gray};
-  border-bottom-width: 0.2px;
-  margin: 10px 40px;
+  border-bottom-width: 0.3px;
+  margin: 17px 40px;
   width: auto;
 `;
 
@@ -43,7 +43,7 @@ export const ItemTitle = styled.Text`
   font-weight: bold;
   color: ${theme.colors.black};
   font-size: 17px;
-  padding-top: 5px;
+  padding-top: 0px;
   text-align: right;
 `;
 

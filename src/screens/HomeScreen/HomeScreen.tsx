@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {SafeAreaView} from 'react-native';
 import {
   HeaderTitle,
@@ -10,24 +10,10 @@ import {
 } from './style';
 import profileImage from '../../assets/Profile.png';
 import CurrencyList from '../../containers/CurrencyList/CurrencyList';
-import CryptoTypes from '../../types/types';
-import {API_URL} from '@env';
+import {useSelector} from 'react-redux';
 
-const HomeScreen = () =>{
-  const [coins, setCoins] = useState<CryptoTypes[]>([]) 
-  const getAllCryptos = async () => {
-    try {
-      const dataAPI = await fetch(API_URL);
-      const data = await dataAPI.json()
-      setCoins(data.data)
-    } catch (error) {
-      console.log(error)
-    }
-  }
-
-  useEffect(() => {
-    getAllCryptos()
-  }, []);
+const HomeScreen = ({navigation}) => {
+  const {cryptos} = useSelector(state => state.cryptos);
 
   return (
     <SafeAreaView>
@@ -36,10 +22,12 @@ const HomeScreen = () =>{
         <ProfileImage source={profileImage} alt="Profile Image Not Found" />
       </Header>
       <MiddView>
-        <CurrencyList data={coins} />
+        <CurrencyList data={cryptos} />
       </MiddView>
       <Footer>
-        <ButtonText>+ Add a Cryptocurrency</ButtonText>
+        <ButtonText onPress={() => navigation.navigate('AddCrypto')}>
+          + Add a Cryptocurrency
+        </ButtonText>
       </Footer>
     </SafeAreaView>
   );
