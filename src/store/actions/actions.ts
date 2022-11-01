@@ -1,4 +1,4 @@
-import {DELETE_CRYPTO, GET_CRYPTO} from './actiontypes';
+import {DELETE_CRYPTO, GET_CRYPTO, UPDATE_CRYPTO} from './actiontypes';
 import CryptoTypes from '../../types/types';
 import {Alert} from 'react-native';
 import {API_URL} from '@env';
@@ -39,5 +39,30 @@ export const deleteCrypto = (id: string, cryptos: CryptoTypes[]) => {
       type: DELETE_CRYPTO,
       payload: newCryptos,
     });
+  };
+};
+
+export const updateCrypto = (cryptos: CryptoTypes[]) => {
+  return async dispatch => {
+    try {
+      const cryptosUpdated: CryptoTypes[] = [];
+      const cryptolisted: string[] = cryptos.map(c => {
+        return c.Asset.symbol;
+      });
+
+      for (let i = 0; i < cryptos.length; i++) {
+        const dataAPI = await fetch(
+          `${API_URL}assets/${cryptolisted[i]}/metrics/market-data`,
+        );
+        const data = await dataAPI.json();
+        cryptosUpdated.push(data.data);
+      }
+      dispatch({
+        type: UPDATE_CRYPTO,
+        payload: cryptosUpdated,
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
 };

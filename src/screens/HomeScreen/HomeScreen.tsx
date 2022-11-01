@@ -1,5 +1,5 @@
-import React from 'react';
-import {SafeAreaView} from 'react-native';
+import React, {useEffect} from 'react';
+import {SafeAreaView, Text} from 'react-native';
 import {
   HeaderTitle,
   Header,
@@ -11,9 +11,19 @@ import {
 import profileImage from '../../assets/Profile.png';
 import CurrencyList from '../../containers/CurrencyList/CurrencyList';
 import {useSelector} from 'react-redux';
+import {updateCrypto} from '../../store/actions/actions';
+import {useAppDispatch} from '../../store/store/store';
 
 const HomeScreen = ({navigation}) => {
   const {cryptos} = useSelector(state => state.cryptos);
+  const dispatch = useAppDispatch();
+  const handleUpdated = () => {
+    dispatch(updateCrypto(cryptos))
+  }
+  useEffect(() => {
+    const time = setInterval(() => handleUpdated(), 5000);
+    return () => clearInterval(time);
+  });
 
   return (
     <SafeAreaView>
