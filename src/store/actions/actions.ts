@@ -1,4 +1,4 @@
-import {DELTE_CRYPTO, GET_CRYPTO} from './actiontypes';
+import {DELETE_CRYPTO, GET_CRYPTO} from './actiontypes';
 import CryptoTypes from '../../types/types';
 import {Alert} from 'react-native';
 import {API_URL} from '@env';
@@ -36,7 +36,7 @@ export const deleteCrypto = (id: string, cryptos: CryptoTypes[]) => {
 
   return dispatch => {
     dispatch({
-      type: DELTE_CRYPTO,
+      type: DELETE_CRYPTO,
       payload: newCryptos,
     });
   };
