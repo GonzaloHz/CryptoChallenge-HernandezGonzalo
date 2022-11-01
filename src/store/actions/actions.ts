@@ -3,15 +3,15 @@ import CryptoTypes from '../../types/types';
 import {Alert} from 'react-native';
 import {API_URL} from '@env';
 
-export const getCrypto = (string: String, cryptos: CryptoTypes) => {
+export const getCrypto = (query: string, cryptos: CryptoTypes) => {
   return async dispatch => {
     try {
       const dataAPI = await fetch(
-        `${API_URL}assets/${string}/metrics/market-data`,
+        `${API_URL}assets/${query}/metrics/market-data`,
       );
       const data = await dataAPI.json();
       if (!data.data.Asset.id) {
-        throw new Error(`${Alert.alert(`I can't found ${string}`)}`);
+        throw new Error(`${Alert.alert(`I can't found ${query}`)}`);
       }
       const chosenCrypto = cryptos.filter(
         c => c.Asset.id === data.data.Asset.id,
