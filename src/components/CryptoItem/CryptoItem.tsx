@@ -23,7 +23,7 @@ const CryptoItem = ({item}: {item: CryptoTypes}) => {
   const handleOnDelete = () => {
     dispatch(deleteCrypto(item.Asset.id, cryptos));
   };
-
+  
   return (
     <ItemContainer onPress={handleOnDelete}>
       <StyledImage
